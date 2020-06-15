@@ -3,4 +3,18 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="card_name">Card name</string>
+    <string name="filter">Filter</string>
+    <string name="my_collection">My Collection</string>
+    <string name="search">Search</string>
+    <string name="sort_name">Sort by name</string>
+    <string name="sort_price">Sort by price</string>
+    <string name="tag_mtga">Magic Arena</string>
+    <string name="tag_mtgo">Magic Online</string>
+    <string name="tag_paper">Paper</string>
+
+    <!-- image content description -->
+    <string name="card_image">Card image</string>
+
 </resources>

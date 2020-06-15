@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="br.com.macaxeira.mtgbinder.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:name="br.com.macaxeira.mtgbinder.features.collection.CollectionFragment"
+        android:label="@string/my_collection"
+        tools:layout="@layout/fragment_collection" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
