@@ -5,6 +5,7 @@
     <string name="title_notifications">Notifications</string>
 
     <string name="card_name">Card name</string>
+    <string name="deck_list">Decks</string>
     <string name="filter">Filter</string>
     <string name="my_collection">My Collection</string>
     <string name="search">Search</string>
@@ -16,5 +17,7 @@
 
     <!-- image content description -->
     <string name="card_image">Card image</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

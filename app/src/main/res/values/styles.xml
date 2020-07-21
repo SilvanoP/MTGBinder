@@ -16,4 +16,9 @@
         <item name="android:windowSharedElementExitTransition">@android:transition/move</item>
     </style>
 
+    <style name="LargeDialogTheme" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowMinWidthMajor">80%</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+    </style>
+
 </resources>
