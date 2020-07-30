@@ -14,7 +14,6 @@
         android:scaleType="centerCrop"
         android:adjustViewBounds="true"
         android:contentDescription="@string/card_image"
-        android:src=""
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
