@@ -4,5 +4,7 @@ import br.com.macaxeira.mtgbinder.domain.model.Card
 
 interface CardRepository {
 
-    fun getAllCollectedCards(): List<Card>
+    suspend fun getAllCollectedCards(): List<Card>
+    suspend fun searchCards(query: String): List<Card>
+
 }
