@@ -11,15 +11,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import br.com.macaxeira.mtgbinder.R
+import br.com.macaxeira.mtgbinder.databinding.FragmentCollectionBinding
 import br.com.macaxeira.mtgbinder.features.shared.CardsListAdapter
 import br.com.macaxeira.mtgbinder.model.CardItem
-import kotlinx.android.synthetic.main.fragment_collection.*
-import kotlinx.android.synthetic.main.fragment_collection.view.*
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class CollectionFragment : Fragment() {
 
     private val viewModel: CollectionViewModel by viewModels()
+    private var binding: FragmentCollectionBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,36 +31,42 @@ class CollectionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment )
-        val root = inflater.inflate(R.layout.fragment_collection, container, false)
+        // Inflate the layout for this fragment
+        binding = FragmentCollectionBinding.inflate(inflater, container, false)
+        val root = binding?.root
         setHasOptionsMenu(true)
-        initToolbar(root)
-        initRecycler(root)
+        root?.apply{
+            initToolbar()
+            initRecycler()
+        }
         return root
     }
 
-    private fun initToolbar(view: View) {
-        (requireActivity() as AppCompatActivity).setSupportActionBar(view.collectionToolbar)
-        view.collectionToolbar.title = getString(R.string.my_collection)
+    private fun initToolbar() {
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding?.collectionToolbar)
+        binding?.collectionToolbar?.title = getString(R.string.my_collection)
     }
 
-    private fun initRecycler(view: View) {
-        view.collectionRecycler.layoutManager = GridLayoutManager(requireContext(), NUM_COLUMNS)
-        val adapter = CardsListAdapter()
-        view.collectionRecycler.adapter = adapter
+    private fun initRecycler() {
+        binding?.collectionRecycler?.apply {
+            this.layoutManager = GridLayoutManager(requireContext(), NUM_COLUMNS)
+            this.adapter = CardsListAdapter()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.cards.observe(viewLifecycleOwner, Observer {
+        viewModel.cards.observe(viewLifecycleOwner, {
             refreshList(it)
         })
     }
 
     private fun refreshList(cardItemList: MutableList<CardItem>) {
-        val adapter: CardsListAdapter = collectionRecycler.adapter as CardsListAdapter
-        adapter.swapCards(cardItemList)
-        collectionRecycler.adapter = adapter
+        binding?.collectionRecycler?.apply {
+            val adapter = this.adapter as CardsListAdapter
+            adapter.swapCards(cardItemList)
+            this.adapter = adapter
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

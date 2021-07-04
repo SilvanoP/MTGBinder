@@ -1,13 +1,16 @@
 package br.com.macaxeira.mtgbinder.features.collection
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import br.com.macaxeira.mtgbinder.domain.usecase.SearchCards
 import br.com.macaxeira.mtgbinder.model.CardItem
 import br.com.macaxeira.mtgbinder.model.OwnTag
+import dagger.hilt.android.lifecycle.HiltViewModel
 import timber.log.Timber
+import javax.inject.Inject
 
-class CollectionViewModel : ViewModel() {
+@HiltViewModel
+class CollectionViewModel @Inject constructor(private val searchCards: SearchCards) : ViewModel() {
 
     private val fullCardList = listOf(
         CardItem(0L, "test", "https://img.scryfall.com/cards/normal/front/2/1/215165e8-16f2-4dbf-932d-06c2a9a174d5.jpg?1573508657", OwnTag.MTGA, true),

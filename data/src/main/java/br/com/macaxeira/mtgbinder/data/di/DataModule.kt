@@ -5,13 +5,13 @@ import br.com.macaxeira.mtgbinder.data.remote.ScryfallWebService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
-@InstallIn(ApplicationComponent::class)
-class DataModule {
+@InstallIn(SingletonComponent::class)
+object DataModule {
 
     @Provides
     fun provideScryfallService(): ScryfallWebService {

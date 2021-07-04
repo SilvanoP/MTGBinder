@@ -1,15 +1,19 @@
 package br.com.macaxeira.mtgbinder.features.deck.list
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import br.com.macaxeira.mtgbinder.R
-import kotlinx.android.synthetic.main.fragment_deck_list.view.*
+import br.com.macaxeira.mtgbinder.databinding.FragmentDeckListBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DeckListFragment : Fragment() {
+
+    private var binding: FragmentDeckListBinding? = null
+    private var adapter: DeckListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,17 +24,19 @@ class DeckListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_deck_list, container, false)
+        binding = FragmentDeckListBinding.inflate(inflater, container, false)
+        val root = binding?.root
         setHasOptionsMenu(true)
-        initRecycler(root)
+        initRecycler()
         return root
     }
 
-    fun initRecycler(view: View) {
-        view.deckListRecycler.layoutManager = LinearLayoutManager(requireContext())
+    private fun initRecycler() {
+        binding?.deckListRecycler?.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = DeckListAdapter()
+        }
     }
 
-    companion object {
 
-    }
 }
